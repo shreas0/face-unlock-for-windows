@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; =========================================================================
+; FaceUnlock Emergency Safe Recovery Script
+; Double-click or merge in Windows Safe Mode / Recovery Environment to
+; instantly disable the FaceUnlock Credential Provider.
+; =========================================================================
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{E7A2A9B8-4384-48C8-8547-074C46A2C59D}]
+[-HKEY_CLASSES_ROOT\CLSID\{E7A2A9B8-4384-48C8-8547-074C46A2C59D}]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{E7A2A9B8-4384-48C8-8547-074C46A2C59D}]

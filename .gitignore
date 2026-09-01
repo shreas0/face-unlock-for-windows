@@ -1,0 +1,33 @@
+# Biometric / credential data — NEVER commit
+data/
+
+# Downloaded/trained models — regenerate via download_models.py, don't bloat repo
+models/
+
+# Python environments
+.venv/
+python-embed/
+python-embed.zip
+__pycache__/
+*.pyc
+
+# Compiled C++ build artifacts — keep source only
+FaceUnlockProvider/*.obj
+FaceUnlockProvider/*.exp
+FaceUnlockProvider/*.lib
+FaceUnlockProvider/*.dll
+FaceUnlockProvider/*.exe
+
+# Don't commit the compiled DLL at root either — ship as a Release asset instead
+/FaceUnlockProvider.dll
+
+# Logs
+*.log
+
+# Loose photos/screenshots — nothing like this should be at repo root
+*.jpg
+*.png
+
+# OS/editor cruft
+.vscode/
+Thumbs.db
