@@ -55,7 +55,7 @@ A native C++ Windows Credential Provider (COM In-Process DLL) and Python MediaPi
 > 2. Keep the `emergency_remove.reg` script handy (e.g. on a USB drive or your desktop).
 > 3. If you ever need to disable the provider offline, boot into **Windows Safe Mode** or **Recovery Environment Command Prompt** and run:
 >    ```cmd
->    reg import C:\Users\shres\FaceUnlock\emergency_remove.reg
+>    reg import C:\path\to\FaceUnlock\emergency_remove.reg
 >    ```
 
 ---
@@ -64,14 +64,15 @@ A native C++ Windows Credential Provider (COM In-Process DLL) and Python MediaPi
 
 ### 1. Requirements
 - **Windows 11** (64-bit)
-- **Python 3.10+** (with `opencv-python`, `mediapipe`, `numpy`, `keyring`, `pywin32`)
+- **Real python.org Python 3.11.x — NOT the Microsoft Store Python (App Execution Alias). Using the Store version will cause dependency and virtual environment failures.**
+- Python packages: `opencv-python`, `mediapipe`, `numpy`, `keyring`, `pywin32`
 - **Visual Studio 2022** (Community Edition or Build Tools) with **"Desktop development with C++"** workload.
 
 ### 2. Build the C++ DLL
 Open a Developer Command Prompt (or run the provided build script):
 
 ```powershell
-cd C:\Users\shres\FaceUnlock\FaceUnlockProvider
+cd C:\path\to\FaceUnlock\FaceUnlockProvider
 .\build_provider.bat
 ```
 
@@ -89,13 +90,13 @@ The output file is **`FaceUnlockProvider.dll`** (64-bit).
 
 ### Step 1: Enroll Your Face & Password
 ```powershell
-cd C:\Users\shres\FaceUnlock
+cd C:\path\to\FaceUnlock
 python download_models.py
 python enroll.py
 ```
 - `download_models.py` performs a one-time download of InsightFace `buffalo_l` model files
   into a deterministic project-local cache:
-  `C:\Users\shres\FaceUnlock\models\insightface\models\buffalo_l`
+  `C:\path\to\FaceUnlock\models\insightface\models\buffalo_l`
 - This prevents network fetch attempts when `face_helper.py` runs during lock/boot.
 - Captures 7–10 face samples.
 - Encrypts your Windows PIN or Password via **Windows DPAPI** (`data/vault.enc`).
@@ -112,6 +113,8 @@ python test_pipe.py
 *(Verify that the helper connects, activates the camera, verifies your blink, and reports success)*.
 
 ### Step 3: Register the Credential Provider
+`register_provider.ps1` requires an already-built `FaceUnlockProvider.dll`. This repository ships source code only and does **not** include a prebuilt DLL binary.
+
 Open PowerShell **as Administrator** and run:
 ```powershell
 powershell -ExecutionPolicy Bypass -File register_provider.ps1
