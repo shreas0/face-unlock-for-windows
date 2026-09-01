@@ -130,7 +130,7 @@ This installs `FaceUnlockProvider.dll` to `C:\Windows\System32\` and registers i
 
 ---
 
-## 🧹 Uninstallation
+##  Uninstallation
 
 To completely remove the Credential Provider:
 ```powershell
